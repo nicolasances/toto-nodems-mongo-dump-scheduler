@@ -22,6 +22,8 @@ var setSchedule = function(scheduleData) {
 
   dumpSchedule = schedule.scheduleJob(scheduleData.cron, function() {
 
+    var body = {env: env};
+
     var data = {
       url : "http://toto-nodems-mongo-dump:8080/dumps",
       headers : {
@@ -29,9 +31,8 @@ var setSchedule = function(scheduleData) {
         'Content-Type' : 'application/json',
         'Accept' : 'application/json'
       },
-      body: {
-        env: env
-      }
+      json: true,
+      body: JSON.stringify(body)
     };
 
     http.post(data, function(error, response, body) {
