@@ -31,9 +31,10 @@ var setSchedule = function(scheduleData) {
         'Content-Type' : 'application/json',
         'Accept' : 'application/json'
       },
-      json: true,
       body: JSON.stringify(body)
     };
+
+    console.log(data);
 
     http.post(data, function(error, response, body) {
 
