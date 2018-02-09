@@ -23,7 +23,7 @@ var setSchedule = function(scheduleData) {
   dumpSchedule = schedule.scheduleJob(scheduleData.cron, function() {
 
     var data = {
-      url : "https://toto-nodems-mongo-dump/dumps",
+      url : "http://toto-nodems-mongo-dump:8080/dumps",
       headers : {
         'User-Agent' : 'node.js',
         'Content-Type' : 'application/json',
