@@ -2,6 +2,7 @@ console.log("Dump Scheduler module started");
 
 var schedule = require('node-schedule');
 var getMongoDumpScheduleDlg = require('../dlg/GetMongoDumpScheduleDelegate');
+var http = require('request');
 
 var dumpSchedule = null;
 var env = null;
@@ -21,7 +22,23 @@ var setSchedule = function(scheduleData) {
 
   dumpSchedule = schedule.scheduleJob(scheduleData.cron, function() {
 
-    console.log('Dump Schedule executing');
+    var data = {
+      url : "https://toto-nodems-mongo-dump/dumps",
+      headers : {
+        'User-Agent' : 'node.js',
+        'Content-Type' : 'application/json',
+        'Accept' : 'application/json'
+      },
+      body: {
+        env: env
+      }
+    };
+
+    http.post(data, function(error, response, body) {
+
+      if (error != null) console.log(error);
+
+    });
 
   });
 }
