@@ -34,8 +34,6 @@ var setSchedule = function(scheduleData) {
       body: JSON.stringify(body)
     };
 
-    console.log(data);
-
     http.post(data, function(error, response, body) {
 
       if (error != null) console.log(error);
