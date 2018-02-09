@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var logger = require('toto-apimon-events')
 
 var putMongoDumpScheduleDlg = require('./dlg/PutMongoDumpScheduleDelegate');
-var initMongoDumpScheduleDlg = require('./dlg/initMongoDumpScheduleDelegate');
+var initMongoDumpScheduleDlg = require('./dlg/InitMongoDumpScheduleDelegate');
 var dumpScheduler = require('./sched/DumpScheduler');
 
 var apiName = 'mongo-dump-scheduler';
