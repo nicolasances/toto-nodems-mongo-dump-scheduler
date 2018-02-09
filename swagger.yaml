@@ -1,0 +1,37 @@
+swagger: '2.0'
+info:
+  description: This API manages the schedules of Mongo dumps
+  title: Mongo Dump Scheduler
+schemes:
+  - https
+paths:
+  /schedule:
+    put:
+      summary: Changes the schedule of the dump
+      description: 'Changes the schedule of when the mongo dumps are done'
+      operationId: PUT schedule
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#definitions/PutScheduleRequest'
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid status value
+
+definitions:
+  PutScheduleRequest:
+    type: object
+    properties:
+      env:
+        type: string
+        description: 'The environment in which to request the dump (env, prod)'
+      schedule:
+        type: string
+        description: 'A cron expression describing the schedule.'
