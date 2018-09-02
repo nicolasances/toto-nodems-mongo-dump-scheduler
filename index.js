@@ -6,6 +6,7 @@ var logger = require('toto-apimon-events')
 var putMongoDumpScheduleDlg = require('./dlg/PutMongoDumpScheduleDelegate');
 var initMongoDumpScheduleDlg = require('./dlg/InitMongoDumpScheduleDelegate');
 var dumpScheduler = require('./sched/DumpScheduler');
+var getMongoDumpSchedules = require('./dlg/GetMongoDumpSchedules');
 
 var apiName = 'mongo-dump-scheduler';
 
@@ -23,8 +24,23 @@ app.use(bodyParser.json());
 app.use(express.static('/app'));
 
 app.get('/', function(req, res) {res.send({api: apiName, status: 'running'});});
+
+// REtrieves the list of schedules
+app.get('/schedules', function(req, res) {
+
+  getMongoDumpSchedules.do().then((data) => {
+    res.status(200).send(data);
+  }, (e) => {
+    res.status(500).send(e);
+  })
+
+});
+
+// Updates the (supposedly only) schedule
 app.put('/schedule', function(req, res) {
+
   logger.apiCalled(apiName, '/schedule', 'PUT', req.query, req.params, req.body);
+
   putMongoDumpScheduleDlg.putSchedule(req.body).then(function(result) {
     res.status(200).send(result);
   }, (error) => {
