@@ -12,7 +12,8 @@ var apiName = 'mongo-dump-scheduler';
 
 var app = express();
 
-initMongoDumpScheduleDlg.init();
+// Commented since the dump schedule is actually retrieved from the restore 
+// initMongoDumpScheduleDlg.init();
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
