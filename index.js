@@ -39,6 +39,9 @@ app.get('/schedules', function(req, res) {
 // Updates the (supposedly only) schedule
 app.put('/schedule', function(req, res) {
 
+  console.log('Received a request to (re)schedule a dump: ');
+  console.log(req.body);
+
   logger.apiCalled(apiName, '/schedule', 'PUT', req.query, req.params, req.body);
 
   putMongoDumpScheduleDlg.putSchedule(req.body).then(function(result) {
