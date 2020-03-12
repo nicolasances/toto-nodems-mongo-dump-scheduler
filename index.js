@@ -8,4 +8,4 @@ var api = new Controller('mongo-dump-scheduler');
 api.path('GET', '/schedules', (req, res) => {getMongoDumpSchedules})
 api.path('PUT', '/schedule', (req, res) => {putMongoDumpScheduleDlg})
 
-app.listen();
+api.listen();
