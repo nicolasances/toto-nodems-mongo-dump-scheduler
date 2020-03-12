@@ -4,7 +4,9 @@ var dumpScheduler = require('../sched/DumpScheduler');
 
 var MongoClient = mongo.MongoClient;
 
-exports.putSchedule = function(schedule) {
+exports.do = function(req) {
+
+  schedule = req.body;
 
   return new Promise(function(success, failure) {
 
